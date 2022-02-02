@@ -2,6 +2,7 @@ package com.globant.university.courseDataObject;
 
 import com.globant.university.peopleDataObject.*;
 import com.globant.university.peopleDataObject.empty.*;
+import com.globant.university.utilities.Header;
 import com.jakewharton.fliptables.FlipTable;
 
 import java.util.HashSet;
@@ -74,7 +75,7 @@ public class Course {
 
 
     public String getCourseData() {
-        String[] header= UniversityCommunityMember.getBasicHeader();
+        String[] header= Header.getBasicHeader();
         String teacherString="Teacher is not assigned";
         if(!(this.teacher instanceof EmptyTeacher)){
             String[][] teacherData={this.teacher.getResumedCommunityMemberData()};

@@ -8,6 +8,7 @@ import com.globant.university.peopleDataObject.UniversityCommunityMember;
 import com.globant.university.peopleDataObject.empty.EmptyStudent;
 import com.globant.university.peopleDataObject.empty.EmptyTeacher;
 import com.globant.university.repository.UniversityRepository;
+import com.globant.university.utilities.Header;
 import com.jakewharton.fliptables.FlipTable;
 
 import java.util.ArrayList;
@@ -27,7 +28,7 @@ public class UniversityService {
     }
 
     public String getTeachersList(){
-        String[] header= Teacher.getFullHeader() ;
+        String[] header= Header.getTeacherFullHeader() ;
         Set<Teacher> teacherList = this.universityRepository.getTeacherList();
         String[][] teachersData=new String[teacherList.size()][];
         int position=0;
@@ -39,7 +40,7 @@ public class UniversityService {
     }
 
     public String getCourseList(){
-        String[] header=Course.getBasicHeader();
+        String[] header=Header.getBasicHeader();
         List<Course> courseList = this.universityRepository.getCourseList();
         String[][] coursesNames=new String[courseList.size()][];
         int position=0;
@@ -74,7 +75,7 @@ public class UniversityService {
             communityMembersData[position]=member.getResumedCommunityMemberData();
             position++;
         }
-        return FlipTable.of(UniversityCommunityMember.getBasicHeader(),communityMembersData);
+        return FlipTable.of(Header.getBasicHeader(),communityMembersData);
     }
 
 
@@ -84,7 +85,7 @@ public class UniversityService {
         if(coursesEnrolled.isEmpty()){
             result="Student with id "+id+" is not enrolled in any course";
         }else{
-            String[] header=Course.getBasicHeader();
+            String[] header=Header.getBasicHeader();
             String[][] coursesNames=new String[coursesEnrolled.size()][];
             int position=0;
             for (Course course:coursesEnrolled) {
@@ -106,7 +107,7 @@ public class UniversityService {
         }else{
             course.enrollStudent(studentToEnroll);
             result=result+"Student enrolled successfully \n";
-            String[] header=Student.getFullHeader();
+            String[] header=Header.getStudentFullHeader();
             String[][] studentInfo=new String[1][];
             studentInfo[0]=studentToEnroll.getFullCommunityMemberData();
             result=result+FlipTable.of(header,studentInfo);
@@ -116,18 +117,12 @@ public class UniversityService {
 
     public boolean doesTeacherIdExist(String id)  {
         Teacher teacherById = this.universityRepository.findTeacherById(id);
-        if(teacherById instanceof EmptyTeacher){
-            return false;
-        }
-        return true;
+        return !(teacherById instanceof EmptyTeacher);
     }
 
     public boolean doesStudentIdExist(String id) {
         Student studentById=this.universityRepository.findStudentById(id);
-        if(studentById instanceof EmptyStudent){
-            return false;
-        }
-        return true;
+        return !(studentById instanceof EmptyStudent);
     }
 
 

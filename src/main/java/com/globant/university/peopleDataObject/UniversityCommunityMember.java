@@ -33,11 +33,6 @@ public abstract class UniversityCommunityMember {
         return age;
     }
 
-    public static String[] getBasicHeader(){
-        String[] header={"ID","NAME"};
-        return header;
-    }
-
 
     public abstract String[] getFullCommunityMemberData();
 

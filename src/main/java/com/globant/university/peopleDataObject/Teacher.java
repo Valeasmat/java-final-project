@@ -18,8 +18,4 @@ public abstract class Teacher extends UniversityCommunityMember{
 
     public abstract double getSalary();
 
-    public static String[] getFullHeader(){
-        String[] header={"ID","NAME","AGE","SALARY","TYPE"};
-        return header;
-    }
 }

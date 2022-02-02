@@ -8,10 +8,6 @@ public class Student extends UniversityCommunityMember{
         super(name, age);
     }
 
-    public static String[] getFullHeader() {
-        return new String[]{"ID","NAME","AGE"};
-    }
-
     @Override
     public String[] getFullCommunityMemberData() {
         return new String[]{

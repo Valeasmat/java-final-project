@@ -50,7 +50,7 @@ public class Main {
                         String teacherOption=printCommunityMemberSubmenu(sc, universityService,1);
                         if(!universityService.doesTeacherIdExist(teacherOption)){
                             System.out.println("Teacher id not found, assign later");
-                            teacherOption=null;
+                            teacherOption="";
                         }
                         System.out.println("Proceed to insert the ids of the students to enroll:");
                         String[] studentsId=studentsIdsInputData(sc, universityService);
