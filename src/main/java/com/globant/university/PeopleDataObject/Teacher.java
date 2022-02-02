@@ -16,6 +16,9 @@ public abstract class Teacher extends UniversityCommunityMember{
         return baseSalary;
     }
 
+    /**
+     * @return The salary of the teacher calculated by its type(full time or part-time)
+     */
     public abstract double getSalary();
 
 }

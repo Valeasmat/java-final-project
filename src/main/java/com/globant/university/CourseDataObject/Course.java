@@ -8,6 +8,9 @@ import com.jakewharton.fliptables.FlipTable;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Class that holds the data of a course, and manages its information (enrollments or assignations)
+ */
 public class Course {
     private String name;
     private String classroom;
@@ -35,16 +38,25 @@ public class Course {
         return id;
     }
 
+    /**
+     * @param teacher the teacher to be assigned to the course
+     */
     public void assignTeacher(Teacher teacher) {
         this.teacher=teacher;
     }
 
+    /**
+     * @param student The student to be enrolled in the course
+     */
     public void enrollStudent(Student student) {
         if(!(student instanceof EmptyStudent)){
             this.studentsEnrolled.add(student);
         }
     }
 
+    /**
+     * @param studentList The set of students to be enrolled in the course
+     */
     public void enrollStudents(Set<Student> studentList)  {
         for(Student student: studentList){
             enrollStudent(student);
@@ -52,6 +64,10 @@ public class Course {
     }
 
 
+    /**
+     * @param id The id of the student to verify if he is enrolled
+     * @return True if he's enrolled ,false otherwise
+     */
     public boolean isStudentEnrolled(String id){
         boolean result=false;
         if(!this.studentsEnrolled.isEmpty()){
@@ -63,11 +79,17 @@ public class Course {
         return result;
     }
 
+    /**
+     * @return An array of strings holding the basic data of the course(name,id)
+     */
     public String[] getCourseBasicInfo(){
         return new String[]{this.id+"",this.name};
     }
 
 
+    /**
+     * @return A string holding the complete data of the course
+     */
     public String getCourseData() {
         String[] header= Header.getBasicHeader();
         String teacherString="Teacher is not assigned";

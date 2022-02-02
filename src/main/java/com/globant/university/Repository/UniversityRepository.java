@@ -10,6 +10,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * This class manages the repository of the university, contains the list of teachers,students and courses of a University
+ */
 public class UniversityRepository {
     private Set<Teacher> teacherList;
     private Set<Student> studentList;
@@ -24,6 +27,11 @@ public class UniversityRepository {
         this.studentList = studentList;
         this.courseList = courseList;
     }
+
+    /**
+     * @param id The id of the teacher requested
+     * @return The instance of the teacher requested. If not found an instance of an EmptyTeacher
+     */
     public Teacher findTeacherById(String id) {
         Teacher teacherResult=new EmptyTeacher();
         if(id!=null){
@@ -34,18 +42,31 @@ public class UniversityRepository {
         return teacherResult;
     }
 
+    /**
+     * @return Returns the set of teachers in this repo
+     */
     public Set<Teacher> getTeacherList() {
         return teacherList;
     }
 
+    /**
+     * @return Returns the set of students in this repo
+     */
     public Set<Student> getStudentList() {
         return studentList;
     }
 
+    /**
+     * @return Returns the list of  courses in this repo
+     */
     public List<Course> getCourseList() {
         return courseList;
     }
 
+    /**
+     * @param id The id of the student requested
+     * @return The instance of the student requested. If not found an instance of an EmptyStudent
+     */
     public Student findStudentById(String id) {
         Student studentResult=new EmptyStudent();
         if(id != null){
@@ -56,6 +77,10 @@ public class UniversityRepository {
         return studentResult;
     }
 
+    /**
+     * @param id The id of the course requested
+     * @return The instance of the course requested. If not found an instance of an EmptyCourse
+     */
     public Course findCourseById(int id) {
         Course courseResult=new EmptyCourse();
         for (Course course: this.courseList) {
@@ -64,6 +89,10 @@ public class UniversityRepository {
         return courseResult;
     }
 
+    /**
+     * @param id The id of the student whose courses are requested
+     * @return A list of courses in which the student is enrolled
+     */
     public List<Course> getCoursesByStudentId(String id){
         List<Course> coursesEnrolled=new ArrayList<>();
         for (Course course: this.courseList) {
@@ -72,6 +101,10 @@ public class UniversityRepository {
         return coursesEnrolled;
     }
 
+    /**
+     * @param student The student to be added in the university repo
+     * @return True if the enrollment is successful
+     */
     public boolean addStudent(Student student){
         boolean result=false;
         if(!(student instanceof EmptyStudent)){
@@ -80,6 +113,10 @@ public class UniversityRepository {
         return result;
     }
 
+    /**
+     * @param teacher The teacher to be added in the university repo
+     * @return True if the enrollment is successful
+     */
     public boolean addTeacher(Teacher teacher){
         boolean result=false;
         if(!(teacher instanceof EmptyTeacher)){
@@ -87,6 +124,11 @@ public class UniversityRepository {
         }
         return result;
     }
+
+    /**
+     * @param course The course to be added in the university repo
+     * @return True if the course addition is successful
+     */
     public boolean addCourse(Course course){
         boolean result=false;
         if(!(course instanceof EmptyCourse)){
@@ -95,6 +137,9 @@ public class UniversityRepository {
         return result;
     }
 
+    /**
+     * This method initializes a university repo by default
+     */
     private void initializeRepository(){
         this.teacherList=new HashSet<>();
         FullTimeTeacher teacher1 = new FullTimeTeacher("VALERIA ASMAT", 30, 4700.50, 5);

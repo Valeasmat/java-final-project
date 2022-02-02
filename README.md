@@ -3,7 +3,7 @@
 ## Description
 
 This program has 6 functionalities available
-1. Print all teachers and their data
+1. Print all teachers and their data:
 This option shows the data of the active teachers in the university
 Result Example:
 ```

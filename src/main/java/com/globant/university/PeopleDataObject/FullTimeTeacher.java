@@ -1,7 +1,9 @@
 package com.globant.university.PeopleDataObject;
 
-import java.text.DecimalFormat;
 
+/**
+ * Child class of community member that implements the behavior of a full-time teacher
+ */
 public class FullTimeTeacher extends Teacher{
     private int yearsOfExperience;
     public FullTimeTeacher(String name, int age, double baseSalary,int yearsOfExperience) {

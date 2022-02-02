@@ -2,6 +2,9 @@ package com.globant.university.PeopleDataObject;
 
 import java.util.Objects;
 
+/**
+ * Parent class that holds the data of a university community member, it can be a teacher or a student
+ */
 public abstract class UniversityCommunityMember {
     private String name;
     private String id;
@@ -34,8 +37,14 @@ public abstract class UniversityCommunityMember {
     }
 
 
+    /**
+     * @return an array of strings with all the attributes corresponding to the community member
+     */
     public abstract String[] getFullCommunityMemberData();
 
+    /**
+     * @return an array of strings with the id and name corresponding to the community member
+     */
     public String[] getResumedCommunityMemberData(){
         return new String[]{this.id,this.name};
     }

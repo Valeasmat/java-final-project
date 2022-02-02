@@ -1,7 +1,9 @@
 package com.globant.university.PeopleDataObject;
 
-import java.text.DecimalFormat;
 
+/**
+ * Child class of community member that implements the behavior of a part-time teacher
+ */
 public class PartTimeTeacher extends Teacher{
     private int activeHoursPerWeek;
 

@@ -1,11 +1,8 @@
 package com.globant.university;
 
-import com.globant.university.CourseDataObject.Course;
 import com.globant.university.Exception.InvalidScannerInputException;
-import com.globant.university.PeopleDataObject.*;
-import com.globant.university.PeopleDataObject.Teacher;
 import com.globant.university.Repository.UniversityRepository;
-import com.globant.university.Service.UniversityService;
+import com.globant.university.Service.University;
 
 import java.util.*;
 
@@ -13,7 +10,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
         System.out.println("Welcome to our university");
-        UniversityService universityService =new UniversityService(new UniversityRepository());
+        University university =new University(new UniversityRepository());
 
         boolean keepLooping=true;
         boolean returnToMenu=true;
@@ -25,12 +22,12 @@ public class Main {
                 }
                 switch (option){
                     case 1:
-                        printTeachersInfo(universityService);
+                        printTeachersInfo(university);
                         if(returnToMenu(sc)==2)returnToMenu=false;
                         break;
                     case 2:
-                        int courseOption=printCoursesSubmenu(sc, universityService);
-                        printCourseData(universityService,courseOption);
+                        int courseOption=printCoursesSubmenu(sc, university);
+                        printCourseData(university,courseOption);
                         if(returnToMenu(sc)==2)returnToMenu=false;
                         break;
                     case 3:
@@ -38,8 +35,8 @@ public class Main {
                         String studentName=nameDataInput(sc).toUpperCase();
                         int studentAge=ageDataInput(sc);
                         System.out.println("Select course to enroll:");
-                        courseOption=printCoursesSubmenu(sc, universityService);
-                        String enrollStudent = universityService.createAndEnrollStudent(studentName, studentAge, courseOption);
+                        courseOption=printCoursesSubmenu(sc, university);
+                        String enrollStudent = university.createAndEnrollStudent(studentName, studentAge, courseOption);
                         System.out.println(enrollStudent);
                         if(returnToMenu(sc)==2)returnToMenu=false;
                         break;
@@ -47,14 +44,14 @@ public class Main {
                         String courseName=nameDataInput(sc).toUpperCase();
                         String courseClassroom=classroomDataInput(sc).toUpperCase();
                         System.out.println("Select teacher to assign:");
-                        String teacherOption=printCommunityMemberSubmenu(sc, universityService,1);
-                        if(!universityService.doesTeacherIdExist(teacherOption)){
+                        String teacherOption=printCommunityMemberSubmenu(sc, university,1);
+                        if(!university.doesTeacherIdExist(teacherOption)){
                             System.out.println("Teacher id not found, assign later");
                             teacherOption="";
                         }
                         System.out.println("Proceed to insert the ids of the students to enroll:");
-                        String[] studentsId=studentsIdsInputData(sc, universityService);
-                        String newCourse = universityService.createCourse(courseName, courseClassroom, teacherOption, studentsId);
+                        String[] studentsId=studentsIdsInputData(sc, university);
+                        String newCourse = university.createCourse(courseName, courseClassroom, teacherOption, studentsId);
                         System.out.println("--------------------------------------------------");
                         System.out.println("Course created successfully");
                         System.out.println(newCourse);
@@ -64,10 +61,10 @@ public class Main {
                     case 5:
                         System.out.println("Select id student to start search:");
                         sc.nextLine();
-                        String idStudent=printCommunityMemberSubmenu(sc, universityService,2);
+                        String idStudent=printCommunityMemberSubmenu(sc, university,2);
+                        String studentCoursesById = university.getStudentCoursesById(idStudent);
                         System.out.println("--------------------------------------------------");
-                        System.out.println("Student "+idStudent+" is enrolled in: ");
-                        String studentCoursesById = universityService.getStudentCoursesById(idStudent);
+                        System.out.println("Student "+idStudent+" result search: ");
                         System.out.println(studentCoursesById);
                         if(returnToMenu(sc)==2)returnToMenu=false;
                         break;
@@ -93,8 +90,8 @@ public class Main {
 
     }
 
-    private static void printCourseData(UniversityService newUniversityService, int courseOption)  {
-        String courseData = newUniversityService.getCourseData(courseOption);
+    private static void printCourseData(University newUniversity, int courseOption)  {
+        String courseData = newUniversity.getCourseData(courseOption);
         System.out.println("--------------------------------------------------");
         System.out.println(courseData);
         System.out.println("--------------------------------------------------");
@@ -114,25 +111,23 @@ public class Main {
         return sc.nextInt();
     }
 
-    public static void printTeachersInfo(UniversityService universityService){
+    public static void printTeachersInfo(University university){
         System.out.println("--------------------------------------------------");
-        System.out.println(universityService.getTeachersList());
+        System.out.println(university.getTeachersList());
         System.out.println("--------------------------------------------------");
     }
 
-    public static int printCoursesSubmenu(Scanner sc, UniversityService universityService){
+    public static int printCoursesSubmenu(Scanner sc, University university){
         System.out.println("--------------------------------------------------");
-        System.out.println(universityService.getCourseList());
+        System.out.println(university.getCourseList());
         System.out.println("--------------------------------------------------");
         System.out.print("Insert the id of the course selected:");
         return sc.nextInt();
     }
 
-    public static String printCommunityMemberSubmenu(Scanner sc, UniversityService universityService, int type){
-        //Type 1 teacher
-        //Type 2 student
+    public static String printCommunityMemberSubmenu(Scanner sc, University university, int type){
         System.out.println("--------------------------------------------------");
-        System.out.println(universityService.getCommunityMemberList(type));
+        System.out.println(university.getCommunityMemberList(type));
         System.out.println("--------------------------------------------------");
         System.out.print("Insert id selected: ");
         return sc.nextLine().toUpperCase();
@@ -160,15 +155,15 @@ public class Main {
         return classroom;
     }
 
-    public static String[] studentsIdsInputData(Scanner sc, UniversityService universityService) {
+    public static String[] studentsIdsInputData(Scanner sc, University university) {
         System.out.println("How many students are going to be enrolled?");
         int numberOfStudents=sc.nextInt();
         sc.nextLine();
         String[] studentsId=new String[numberOfStudents];
         for (int i = 0; i < studentsId.length; i++) {
             System.out.println("Select from the list id nro."+(i+1));
-            String studentOption=printCommunityMemberSubmenu(sc, universityService,2);
-            if(universityService.doesStudentIdExist(studentOption)){
+            String studentOption=printCommunityMemberSubmenu(sc, university,2);
+            if(university.doesStudentIdExist(studentOption)){
                 studentsId[i]=studentOption;
             }else{
                 System.out.println("Id does not exist, insert another id");

@@ -1,5 +1,8 @@
 package com.globant.university.PeopleDataObject;
 
+/**
+ * Child class of community member that implements the behavior of a student
+ */
 public class Student extends UniversityCommunityMember{
     public Student(){
         super();

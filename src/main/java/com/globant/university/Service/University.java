@@ -16,17 +16,23 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class UniversityService {
+/***
+ * This class manages the business requirements of a University regarding teachers,students and courses
+ */
+public class University {
     private UniversityRepository universityRepository;
 
-    public UniversityService(){
+    public University(){
         this.universityRepository=new UniversityRepository();
     }
 
-    public UniversityService(UniversityRepository universityRepository){
+    public University(UniversityRepository universityRepository){
         this.universityRepository=universityRepository;
     }
 
+    /**
+     * @return A String containing the data of all the active teachers in a table format
+     */
     public String getTeachersList(){
         String[] header= Header.getTeacherFullHeader() ;
         Set<Teacher> teacherList = this.universityRepository.getTeacherList();
@@ -39,6 +45,9 @@ public class UniversityService {
         return FlipTable.of(header, teachersData);
     }
 
+    /**
+     * @return A String containing the basic data (id,name) of all the courses in a table format
+     */
     public String getCourseList(){
         String[] header=Header.getBasicHeader();
         List<Course> courseList = this.universityRepository.getCourseList();
@@ -51,6 +60,10 @@ public class UniversityService {
         return FlipTable.of(header,coursesNames);
     }
 
+    /**
+     * @param id The id of the course whose data is requested
+     * @return A String containing the data of the course requested in a table format. If not found, a String with a message of not data available
+     */
     public String getCourseData(int id) {
         Course courseById = this.universityRepository.findCourseById(id);
         String result;
@@ -62,6 +75,10 @@ public class UniversityService {
         return result;
     }
 
+    /**
+     * @param type The type of community member requested. (1)Teacher (2) Student
+     * @return A String containing the basic data(id,name) of all the teachers or students in a table format
+     */
     public String getCommunityMemberList(int type){
         List<UniversityCommunityMember> membersList=new ArrayList<>();
         if(type==1){
@@ -79,6 +96,10 @@ public class UniversityService {
     }
 
 
+    /**
+     * @param id The id of the student whose enrolled courses are requested
+     * @return A String containing the basic data(id,name) of all the courses in which the student is enrolled in a table format.If the student is not enrolled in any course,a string containing a default message.
+     */
     public String getStudentCoursesById(String id)  {
         List<Course> coursesEnrolled=this.universityRepository.getCoursesByStudentId(id);
         String result;
@@ -97,6 +118,12 @@ public class UniversityService {
         return result;
     }
 
+    /**
+     * @param studentName The name of the student to create
+     * @param studentAge The age of the student to create
+     * @param courseId The id of the course in which the student is going to be enrolled
+     * @return A String containing the data of the student created in a table format
+     */
     public String createAndEnrollStudent(String studentName,int studentAge,int courseId) {
         Student studentToEnroll=new Student(studentName,studentAge);
         this.universityRepository.addStudent(studentToEnroll);
@@ -115,17 +142,32 @@ public class UniversityService {
         return result;
     }
 
+    /**
+     * @param id The id of the teacher to verify if exists
+     * @return a boolean, true if exists, false otherwise
+     */
     public boolean doesTeacherIdExist(String id)  {
         Teacher teacherById = this.universityRepository.findTeacherById(id);
         return !(teacherById instanceof EmptyTeacher);
     }
 
+    /**
+     * @param id The id of the student to verify if exists
+     * @return a boolean, true if exists, false otherwise
+     */
     public boolean doesStudentIdExist(String id) {
         Student studentById=this.universityRepository.findStudentById(id);
         return !(studentById instanceof EmptyStudent);
     }
 
 
+    /**
+     * @param courseName The name of the course to be created
+     * @param courseClassroom The classroom of the course to be created
+     * @param teacherId The id of the teacher to be assigned
+     * @param studentsId The list of students ids to be enrolled
+     * @return A String containing the data of the course created in a table format
+     */
     public String createCourse(String courseName,String courseClassroom,String teacherId,String[] studentsId)  {
         Course newCourse=new Course(courseName,courseClassroom);
         Teacher teacher=this.universityRepository.findTeacherById(teacherId);
