@@ -13,7 +13,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
         System.out.println("Welcome to our university");
-        UniversityService universityService =createUniversity();
+        UniversityService universityService =new UniversityService(new UniversityRepository());
 
         boolean keepLooping=true;
         boolean returnToMenu=true;
@@ -184,54 +184,5 @@ public class Main {
         int result= sc.nextInt();
         if(result<0||result>3)return 2;
         return result;
-    }
-
-
-    public static UniversityService createUniversity() {
-        Set<Teacher> teacherList=new HashSet<>();
-        FullTimeTeacher teacher1 = new FullTimeTeacher("VALERIA ASMAT", 30, 4700.50, 5);
-        teacherList.add(teacher1);
-        FullTimeTeacher teacher2 = new FullTimeTeacher("RAMIRO ALEGRE", 31, 4300.60, 3);
-        teacherList.add(teacher2);
-        PartTimeTeacher teacher3 = new PartTimeTeacher("ANTONIO CUELLAR", 27, 1000.10, 15);
-        teacherList.add(teacher3);
-        PartTimeTeacher teacher4 = new PartTimeTeacher("RICARDO CHANG", 36, 1000.20, 10);
-        teacherList.add(teacher4);
-        Set<Student> studentList=new HashSet<>();
-        Student student1=new Student("MARIA RAMOS",20);
-        Student student2=new Student("ANGIE FLORES",21);
-        Student student3=new Student("CAMILO BUENDIA",23);
-        Student student4=new Student("IRINA CHAVEZ",23);
-        Student student5=new Student("JUAN QUISPE",22);
-        Student student6=new Student("LORENZO DELACOURT",24);
-        studentList.add(student1);
-        studentList.add(student2);
-        studentList.add(student3);
-        studentList.add(student4);
-        studentList.add(student5);
-        studentList.add(student6);
-        List<Course> courseList=new ArrayList<>();
-        Course course1=new Course("CALCULUS","201A");
-        course1.assignTeacher(teacher1);
-        course1.enrollStudent(student1);
-        course1.enrollStudent(student3);
-        course1.enrollStudent(student6);
-        course1.enrollStudent(student4);
-        Course course2=new Course("PHYSICS","300B");
-        course2.assignTeacher(teacher2);
-        course2.enrollStudent(student2);
-        course2.enrollStudent(student4);
-        course2.enrollStudent(student1);
-        course2.enrollStudent(student5);
-        Course course3=new Course("LITERATURE","300C");
-        course3.enrollStudent(student1);
-        course3.enrollStudent(student3);
-        course3.enrollStudent(student5);
-        course3.enrollStudent(student6);
-        courseList.add(course1);
-        courseList.add(course2);
-        courseList.add(course3);
-        UniversityRepository repository=new UniversityRepository(teacherList,studentList,courseList);
-        return new UniversityService(repository);
     }
 }

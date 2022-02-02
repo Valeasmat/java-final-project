@@ -16,9 +16,7 @@ public class UniversityRepository {
     private List<Course> courseList;
 
     public UniversityRepository(){
-        this.teacherList=new HashSet<>();
-        this.studentList=new HashSet<>();
-        this.courseList=new ArrayList<>();
+        initializeRepository();
     }
 
     public UniversityRepository(Set<Teacher> teacherList,Set<Student> studentList, List<Course> courseList) {
@@ -95,5 +93,51 @@ public class UniversityRepository {
             result=this.courseList.add(course);
         }
         return result;
+    }
+
+    private void initializeRepository(){
+        this.teacherList=new HashSet<>();
+        FullTimeTeacher teacher1 = new FullTimeTeacher("VALERIA ASMAT", 30, 4700.50, 5);
+        teacherList.add(teacher1);
+        FullTimeTeacher teacher2 = new FullTimeTeacher("RAMIRO ALEGRE", 31, 4300.60, 3);
+        teacherList.add(teacher2);
+        PartTimeTeacher teacher3 = new PartTimeTeacher("ANTONIO CUELLAR", 27, 1000.10, 15);
+        teacherList.add(teacher3);
+        PartTimeTeacher teacher4 = new PartTimeTeacher("RICARDO CHANG", 36, 1000.20, 10);
+        teacherList.add(teacher4);
+        this.studentList=new HashSet<>();
+        Student student1=new Student("MARIA RAMOS",20);
+        Student student2=new Student("ANGIE FLORES",21);
+        Student student3=new Student("CAMILO BUENDIA",23);
+        Student student4=new Student("IRINA CHAVEZ",23);
+        Student student5=new Student("JUAN QUISPE",22);
+        Student student6=new Student("LORENZO DELACOURT",24);
+        studentList.add(student1);
+        studentList.add(student2);
+        studentList.add(student3);
+        studentList.add(student4);
+        studentList.add(student5);
+        studentList.add(student6);
+        this.courseList=new ArrayList<>();
+        Course course1=new Course("CALCULUS","201A");
+        course1.assignTeacher(teacher1);
+        course1.enrollStudent(student1);
+        course1.enrollStudent(student3);
+        course1.enrollStudent(student6);
+        course1.enrollStudent(student4);
+        Course course2=new Course("PHYSICS","300B");
+        course2.assignTeacher(teacher2);
+        course2.enrollStudent(student2);
+        course2.enrollStudent(student4);
+        course2.enrollStudent(student1);
+        course2.enrollStudent(student5);
+        Course course3=new Course("LITERATURE","300C");
+        course3.enrollStudent(student1);
+        course3.enrollStudent(student3);
+        course3.enrollStudent(student5);
+        course3.enrollStudent(student6);
+        courseList.add(course1);
+        courseList.add(course2);
+        courseList.add(course3);
     }
 }
