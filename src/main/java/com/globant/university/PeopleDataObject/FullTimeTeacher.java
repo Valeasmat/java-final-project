@@ -1,5 +1,7 @@
 package com.globant.university.PeopleDataObject;
 
+import java.text.DecimalFormat;
+
 public class FullTimeTeacher extends Teacher{
     private int yearsOfExperience;
     public FullTimeTeacher(String name, int age, double baseSalary,int yearsOfExperience) {
@@ -9,7 +11,9 @@ public class FullTimeTeacher extends Teacher{
 
     @Override
     public double getSalary() {
-        return Math.round((this.getBaseSalary()*(1.1*yearsOfExperience))* 100.0) / 100.0;
+        double calculatedSalary = this.getBaseSalary() * (1.1 * yearsOfExperience);
+        DecimalFormat twoDecimalFormat=new DecimalFormat("#.##");
+        return Double.parseDouble(twoDecimalFormat.format(calculatedSalary));
     }
 
 

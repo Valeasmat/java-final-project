@@ -1,5 +1,7 @@
 package com.globant.university.PeopleDataObject;
 
+import java.text.DecimalFormat;
+
 public class PartTimeTeacher extends Teacher{
     private int activeHoursPerWeek;
 
@@ -10,7 +12,9 @@ public class PartTimeTeacher extends Teacher{
 
     @Override
     public double getSalary() {
-        return Math.round((this.getBaseSalary()*activeHoursPerWeek)* 100.0) / 100.0;
+        DecimalFormat twoDecimalFormat=new DecimalFormat("#.##");
+        double calculatedSalary = this.getBaseSalary() * activeHoursPerWeek;
+        return Double.parseDouble(twoDecimalFormat.format(calculatedSalary));
     }
 
     @Override
