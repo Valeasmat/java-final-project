@@ -94,7 +94,7 @@ Student enrolled successfully
 4. Create course
 This option enables the course creation given a valid course name and classroom. If a teacherId valid is inserted and a list of studentsId are inserted, they will be assigned to the course in creation. Otherwise, the course will be created but it won't have teacher or students assigned.
 Result example:
-``
+```
 Insert name:
 Python
 Insert course classroom (at least 3 characters):
@@ -181,11 +181,11 @@ STUDENTS ENROLLED:
 ╟───────┼──────────────╢
 ║ 8IR35 │ IRINA CHAVEZ ║
 ╚═══════╧══════════════╝
-``
+```
 5. List courses in which a student is enrolled
 This option shows a list of courses in which a given student is enrolled. If id is not valid, it will show a message explaining the result.
 Result example:
-``
+```
 Select id student to start search:
 --------------------------------------------------
 ╔════════╤═══════════════════╗
@@ -219,6 +219,6 @@ Student 8IR35 is enrolled in:
 ╟────┼──────────╢
 ║ 4  │ PYTHON   ║
 ╚════╧══════════╝
-``
+```
 6. Quit
 Exits the application
