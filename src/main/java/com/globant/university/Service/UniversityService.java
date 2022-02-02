@@ -1,14 +1,14 @@
-package com.globant.university.service;
+package com.globant.university.Service;
 
-import com.globant.university.courseDataObject.Course;
-import com.globant.university.courseDataObject.empty.EmptyCourse;
-import com.globant.university.peopleDataObject.Student;
-import com.globant.university.peopleDataObject.Teacher;
-import com.globant.university.peopleDataObject.UniversityCommunityMember;
-import com.globant.university.peopleDataObject.empty.EmptyStudent;
-import com.globant.university.peopleDataObject.empty.EmptyTeacher;
-import com.globant.university.repository.UniversityRepository;
-import com.globant.university.utilities.Header;
+import com.globant.university.CourseDataObject.Course;
+import com.globant.university.CourseDataObject.empty.EmptyCourse;
+import com.globant.university.PeopleDataObject.Student;
+import com.globant.university.PeopleDataObject.Teacher;
+import com.globant.university.PeopleDataObject.UniversityCommunityMember;
+import com.globant.university.PeopleDataObject.empty.EmptyStudent;
+import com.globant.university.PeopleDataObject.empty.EmptyTeacher;
+import com.globant.university.Repository.UniversityRepository;
+import com.globant.university.Utilities.Header;
 import com.jakewharton.fliptables.FlipTable;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.globant.university.peopleDataObject;
+package com.globant.university.PeopleDataObject;
 
 public class PartTimeTeacher extends Teacher{
     private int activeHoursPerWeek;
@@ -21,7 +21,9 @@ public class PartTimeTeacher extends Teacher{
                 String.valueOf(this.getAge()),
                 String.valueOf(this.getSalary()),
                 this.getClass().getSimpleName()
-                        .substring(0,this.getClass().getSimpleName().indexOf("Teacher"))};
+                        .substring(0,this.getClass().getSimpleName().indexOf("Teacher")),
+                "-",
+                String.valueOf(this.activeHoursPerWeek)};
 
     }
 }

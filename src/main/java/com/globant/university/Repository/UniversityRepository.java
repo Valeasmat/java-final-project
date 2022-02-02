@@ -1,9 +1,9 @@
-package com.globant.university.repository;
+package com.globant.university.Repository;
 
-import com.globant.university.peopleDataObject.*;
-import com.globant.university.peopleDataObject.empty.*;
-import com.globant.university.courseDataObject.Course;
-import com.globant.university.courseDataObject.empty.EmptyCourse;
+import com.globant.university.PeopleDataObject.*;
+import com.globant.university.PeopleDataObject.empty.*;
+import com.globant.university.CourseDataObject.Course;
+import com.globant.university.CourseDataObject.empty.EmptyCourse;
 
 import java.util.ArrayList;
 import java.util.HashSet;

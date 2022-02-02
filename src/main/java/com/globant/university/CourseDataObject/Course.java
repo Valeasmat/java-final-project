@@ -1,8 +1,8 @@
-package com.globant.university.courseDataObject;
+package com.globant.university.CourseDataObject;
 
-import com.globant.university.peopleDataObject.*;
-import com.globant.university.peopleDataObject.empty.*;
-import com.globant.university.utilities.Header;
+import com.globant.university.PeopleDataObject.*;
+import com.globant.university.PeopleDataObject.empty.*;
+import com.globant.university.Utilities.Header;
 import com.jakewharton.fliptables.FlipTable;
 
 import java.util.HashSet;
@@ -51,9 +51,6 @@ public class Course {
         }
     }
 
-    public String getName(){
-        return this.name;
-    }
 
     public boolean isStudentEnrolled(String id){
         boolean result=false;
@@ -66,9 +63,6 @@ public class Course {
         return result;
     }
 
-    public static String[] getBasicHeader(){
-        return new String[]{"ID","NAME"};
-    }
     public String[] getCourseBasicInfo(){
         return new String[]{this.id+"",this.name};
     }

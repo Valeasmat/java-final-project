@@ -1,11 +1,11 @@
 package com.globant.university;
 
-import com.globant.university.courseDataObject.Course;
-import com.globant.university.exception.InvalidScannerInputException;
-import com.globant.university.peopleDataObject.*;
-import com.globant.university.peopleDataObject.Teacher;
-import com.globant.university.repository.UniversityRepository;
-import com.globant.university.service.UniversityService;
+import com.globant.university.CourseDataObject.Course;
+import com.globant.university.Exception.InvalidScannerInputException;
+import com.globant.university.PeopleDataObject.*;
+import com.globant.university.PeopleDataObject.Teacher;
+import com.globant.university.Repository.UniversityRepository;
+import com.globant.university.Service.UniversityService;
 
 import java.util.*;
 

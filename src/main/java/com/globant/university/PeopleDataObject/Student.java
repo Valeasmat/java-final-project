@@ -1,4 +1,4 @@
-package com.globant.university.peopleDataObject;
+package com.globant.university.PeopleDataObject;
 
 public class Student extends UniversityCommunityMember{
     public Student(){

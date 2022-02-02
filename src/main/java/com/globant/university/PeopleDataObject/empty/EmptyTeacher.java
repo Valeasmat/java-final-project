@@ -1,6 +1,6 @@
-package com.globant.university.peopleDataObject.empty;
+package com.globant.university.PeopleDataObject.empty;
 
-import com.globant.university.peopleDataObject.Teacher;
+import com.globant.university.PeopleDataObject.Teacher;
 
 public class EmptyTeacher extends Teacher {
     @Override
