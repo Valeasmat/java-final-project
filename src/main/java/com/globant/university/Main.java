@@ -189,13 +189,13 @@ public class Main {
 
     public static UniversityService createUniversity() {
         Set<Teacher> teacherList=new HashSet<>();
-        FullTimeTeacher teacher1 = new FullTimeTeacher("VALERIA ASMAT", 30, 4700, 5);
+        FullTimeTeacher teacher1 = new FullTimeTeacher("VALERIA ASMAT", 30, 4700.50, 5);
         teacherList.add(teacher1);
-        FullTimeTeacher teacher2 = new FullTimeTeacher("RAMIRO ALEGRE", 31, 4300, 3);
+        FullTimeTeacher teacher2 = new FullTimeTeacher("RAMIRO ALEGRE", 31, 4300.60, 3);
         teacherList.add(teacher2);
-        PartTimeTeacher teacher3 = new PartTimeTeacher("ANTONIO CUELLAR", 27, 1000, 15);
+        PartTimeTeacher teacher3 = new PartTimeTeacher("ANTONIO CUELLAR", 27, 1000.10, 15);
         teacherList.add(teacher3);
-        PartTimeTeacher teacher4 = new PartTimeTeacher("RICARDO CHANG", 36, 1000, 10);
+        PartTimeTeacher teacher4 = new PartTimeTeacher("RICARDO CHANG", 36, 1000.20, 10);
         teacherList.add(teacher4);
         Set<Student> studentList=new HashSet<>();
         Student student1=new Student("MARIA RAMOS",20);

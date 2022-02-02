@@ -11,9 +11,7 @@ public class FullTimeTeacher extends Teacher{
 
     @Override
     public double getSalary() {
-        double calculatedSalary = this.getBaseSalary() * (1.1 * yearsOfExperience);
-        DecimalFormat twoDecimalFormat=new DecimalFormat("#.##");
-        return Double.parseDouble(twoDecimalFormat.format(calculatedSalary));
+        return this.getBaseSalary() * (1.1 * yearsOfExperience);
     }
 
 
@@ -23,7 +21,7 @@ public class FullTimeTeacher extends Teacher{
                 this.getId(),
                 this.getName(),
                 String.valueOf(this.getAge()),
-                String.valueOf(this.getSalary()),
+                String.format("%.2f",this.getSalary()),
                 this.getClass().getSimpleName()
                         .substring(0,this.getClass().getSimpleName().indexOf("Teacher")),
                 String.valueOf(this.yearsOfExperience),
