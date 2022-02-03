@@ -22,10 +22,16 @@ import java.util.Set;
 public class University {
     private UniversityRepository universityRepository;
 
+    /**
+     * Initializes an instance of a University with a default repository containing default data
+     */
     public University(){
         this.universityRepository=new UniversityRepository();
     }
 
+    /**
+     * @param universityRepository Initializes a university given a repository as input to manage its information
+     */
     public University(UniversityRepository universityRepository){
         this.universityRepository=universityRepository;
     }

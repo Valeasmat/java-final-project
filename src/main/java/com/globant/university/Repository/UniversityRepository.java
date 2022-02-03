@@ -18,10 +18,18 @@ public class UniversityRepository {
     private Set<Student> studentList;
     private List<Course> courseList;
 
+    /**
+     * Constructor initializes a repo with default data
+     */
     public UniversityRepository(){
         initializeRepository();
     }
 
+    /**
+     * @param teacherList A list of teachers to initialize the list of teachers in the repo
+     * @param studentList A list of students to initialize the list of students in the repo
+     * @param courseList A list of courses to initialize the list of courses in the repo
+     */
     public UniversityRepository(Set<Teacher> teacherList,Set<Student> studentList, List<Course> courseList) {
         this.teacherList = teacherList;
         this.studentList = studentList;
@@ -137,9 +145,6 @@ public class UniversityRepository {
         return result;
     }
 
-    /**
-     * This method initializes a university repo by default
-     */
     private void initializeRepository(){
         this.teacherList=new HashSet<>();
         FullTimeTeacher teacher1 = new FullTimeTeacher("VALERIA ASMAT", 30, 4700.50, 5);
