@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="globant-university-project" />
+        <module name="java-final-project" />
       </profile>
     </annotationProcessing>
   </component>

@@ -6,6 +6,16 @@ import com.globant.university.Service.University;
 
 import java.util.*;
 
+/**
+ * Runner class that initialize the functionality of a university, at this point it has available 6 options, but it can be extended according to requirements.
+ * Functionalities:
+ * 1.Print all teachers and their data
+ * 2.Print Course Data
+ * 3.Create and enroll student
+ * 4.Create course
+ * 5.List courses in which a student is enrolled
+ * 6.Quit
+ */
 public class Main {
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
@@ -18,55 +28,55 @@ public class Main {
             try{
                 int option=6;
                 if(returnToMenu){
-                    option=printMenu(sc);
+                    option= getOptionFromPrincipalMenu(sc);
                 }
                 switch (option){
                     case 1:
                         printTeachersInfo(university);
-                        if(returnToMenu(sc)==2)returnToMenu=false;
+                        if(getReturnToMenuOption(sc)==2)returnToMenu=false;
                         break;
                     case 2:
-                        int courseOption=printCoursesSubmenu(sc, university);
+                        int courseOption= getOptionFromCoursesSubmenu(sc, university);
                         printCourseData(university,courseOption);
-                        if(returnToMenu(sc)==2)returnToMenu=false;
+                        if(getReturnToMenuOption(sc)==2)returnToMenu=false;
                         break;
                     case 3:
                         System.out.println("Insert student's full name,at least 3 characters");
-                        String studentName=nameDataInput(sc).toUpperCase();
-                        int studentAge=ageDataInput(sc);
+                        String studentName= getNameDataInput(sc).toUpperCase();
+                        int studentAge= getAgeDataInput(sc);
                         System.out.println("Select course to enroll:");
-                        courseOption=printCoursesSubmenu(sc, university);
+                        courseOption= getOptionFromCoursesSubmenu(sc, university);
                         String enrollStudent = university.createAndEnrollStudent(studentName, studentAge, courseOption);
                         System.out.println(enrollStudent);
-                        if(returnToMenu(sc)==2)returnToMenu=false;
+                        if(getReturnToMenuOption(sc)==2)returnToMenu=false;
                         break;
                     case 4:
-                        String courseName=nameDataInput(sc).toUpperCase();
-                        String courseClassroom=classroomDataInput(sc).toUpperCase();
+                        String courseName= getNameDataInput(sc).toUpperCase();
+                        String courseClassroom= getClassroomDataInput(sc).toUpperCase();
                         System.out.println("Select teacher to assign:");
-                        String teacherOption=printCommunityMemberSubmenu(sc, university,1);
+                        String teacherOption= getOptionFromCommunityMemberSubmenu(sc, university,1);
                         if(!university.doesTeacherIdExist(teacherOption)){
                             System.out.println("Teacher id not found, assign later");
                             teacherOption="";
                         }
                         System.out.println("Proceed to insert the ids of the students to enroll:");
-                        String[] studentsId=studentsIdsInputData(sc, university);
+                        String[] studentsId= getStudentsIdsInputData(sc, university);
                         String newCourse = university.createCourse(courseName, courseClassroom, teacherOption, studentsId);
                         System.out.println("--------------------------------------------------");
                         System.out.println("Course created successfully");
                         System.out.println(newCourse);
                         System.out.println("--------------------------------------------------");
-                        if(returnToMenu(sc)==2)returnToMenu=false;
+                        if(getReturnToMenuOption(sc)==2)returnToMenu=false;
                         break;
                     case 5:
                         System.out.println("Select id student to start search:");
                         sc.nextLine();
-                        String idStudent=printCommunityMemberSubmenu(sc, university,2);
+                        String idStudent= getOptionFromCommunityMemberSubmenu(sc, university,2);
                         String studentCoursesById = university.getStudentCoursesById(idStudent);
                         System.out.println("--------------------------------------------------");
                         System.out.println("Student "+idStudent+" result search: ");
                         System.out.println(studentCoursesById);
-                        if(returnToMenu(sc)==2)returnToMenu=false;
+                        if(getReturnToMenuOption(sc)==2)returnToMenu=false;
                         break;
                     case 6:
                         System.out.println("Quitting...");
@@ -97,7 +107,7 @@ public class Main {
         System.out.println("--------------------------------------------------");
     }
 
-    public static int printMenu(Scanner sc){
+    private static int getOptionFromPrincipalMenu(Scanner sc){
         System.out.println("--------------------------------------------------");
         System.out.println("Principal Menu:");
         System.out.println("1. Print all teachers and their data");
@@ -111,13 +121,13 @@ public class Main {
         return sc.nextInt();
     }
 
-    public static void printTeachersInfo(University university){
+    private static void printTeachersInfo(University university){
         System.out.println("--------------------------------------------------");
         System.out.println(university.getTeachersList());
         System.out.println("--------------------------------------------------");
     }
 
-    public static int printCoursesSubmenu(Scanner sc, University university){
+    private static int getOptionFromCoursesSubmenu(Scanner sc, University university){
         System.out.println("--------------------------------------------------");
         System.out.println(university.getCourseList());
         System.out.println("--------------------------------------------------");
@@ -125,7 +135,7 @@ public class Main {
         return sc.nextInt();
     }
 
-    public static String printCommunityMemberSubmenu(Scanner sc, University university, int type){
+    private static String getOptionFromCommunityMemberSubmenu(Scanner sc, University university, int type){
         System.out.println("--------------------------------------------------");
         System.out.println(university.getCommunityMemberList(type));
         System.out.println("--------------------------------------------------");
@@ -133,7 +143,7 @@ public class Main {
         return sc.nextLine().toUpperCase();
     }
 
-    public static String nameDataInput(Scanner sc) throws InvalidScannerInputException {
+    private static String getNameDataInput(Scanner sc) throws InvalidScannerInputException {
         sc.nextLine();
         System.out.println("Insert name:");
         String name = sc.nextLine();
@@ -141,28 +151,28 @@ public class Main {
         return name;
     }
 
-    public static int ageDataInput(Scanner sc) throws InvalidScannerInputException {
+    private static int getAgeDataInput(Scanner sc) throws InvalidScannerInputException {
         System.out.println("Insert student's age: ");
         int age = sc.nextInt();
         if(age<0)throw new InvalidScannerInputException("Wrong age input,try again");
         return age;
     }
 
-    public static String classroomDataInput(Scanner sc) throws InvalidScannerInputException {
+    private static String getClassroomDataInput(Scanner sc) throws InvalidScannerInputException {
         System.out.println("Insert course classroom (at least 3 characters):");
         String classroom = sc.nextLine();
         if(classroom.length()<3)throw new InvalidScannerInputException("Wrong classroom input,try again");
         return classroom;
     }
 
-    public static String[] studentsIdsInputData(Scanner sc, University university) {
+    private static String[] getStudentsIdsInputData(Scanner sc, University university) {
         System.out.println("How many students are going to be enrolled?");
         int numberOfStudents=sc.nextInt();
         sc.nextLine();
         String[] studentsId=new String[numberOfStudents];
         for (int i = 0; i < studentsId.length; i++) {
             System.out.println("Select from the list id nro."+(i+1));
-            String studentOption=printCommunityMemberSubmenu(sc, university,2);
+            String studentOption= getOptionFromCommunityMemberSubmenu(sc, university,2);
             if(university.doesStudentIdExist(studentOption)){
                 studentsId[i]=studentOption;
             }else{
@@ -173,7 +183,7 @@ public class Main {
         return studentsId;
     }
 
-    public static int returnToMenu(Scanner sc){
+    private static int getReturnToMenuOption(Scanner sc){
         System.out.println("Return to menu?: (1)YES (2)NO");
         System.out.print("Insert option:");
         int result= sc.nextInt();
