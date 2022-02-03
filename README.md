@@ -1,5 +1,6 @@
 # University project
 ## Project UML Structure
+
 ## Description
 
 This program has 6 functionalities available
