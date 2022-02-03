@@ -22,14 +22,14 @@ public class Course {
     public Course(){
         this.name = "";
         this.classroom = "";
-        this.teacher=null;
+        this.teacher=new EmptyTeacher();
         this.studentsEnrolled=new HashSet<>();
         this.id=0;
     }
     public Course(String name, String classroom) {
         this.name = name;
         this.classroom = classroom;
-        this.teacher=null;
+        this.teacher=new EmptyTeacher();
         this.studentsEnrolled=new HashSet<>();
         this.id=counter++;
     }
@@ -86,6 +86,9 @@ public class Course {
         return new String[]{this.id+"",this.name};
     }
 
+    public String getName() {
+        return name;
+    }
 
     /**
      * @return A string holding the complete data of the course

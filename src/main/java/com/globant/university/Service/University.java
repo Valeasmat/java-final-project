@@ -74,7 +74,7 @@ public class University {
         Course courseById = this.universityRepository.findCourseById(id);
         String result;
         if(courseById instanceof EmptyCourse){
-            result="Course with id: "+id+" not found, no data available";
+            result="Course with id "+id+" not found, no data available";
         }else {
             result=courseById.getCourseData();
         }
@@ -139,7 +139,7 @@ public class University {
             result=result+"Course with id: "+courseId+" not found, student enrollment in course unsuccessful";
         }else{
             course.enrollStudent(studentToEnroll);
-            result=result+"Student enrolled successfully \n";
+            result=result+"Student enrolled successfully in "+course.getName()+"\n";
             String[] header=Header.getStudentFullHeader();
             String[][] studentInfo=new String[1][];
             studentInfo[0]=studentToEnroll.getFullCommunityMemberData();
@@ -171,7 +171,7 @@ public class University {
      * @param courseName The name of the course to be created
      * @param courseClassroom The classroom of the course to be created
      * @param teacherId The id of the teacher to be assigned
-     * @param studentsId The list of students ids to be enrolled
+     * @param studentsId The list of existing students ids to be enrolled
      * @return A String containing the data of the course created in a table format
      */
     public String createCourse(String courseName,String courseClassroom,String teacherId,String[] studentsId)  {

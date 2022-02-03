@@ -182,6 +182,7 @@ public class UniversityRepository {
         course2.enrollStudent(student1);
         course2.enrollStudent(student5);
         Course course3=new Course("LITERATURE","300C");
+        course3.assignTeacher(teacher3);
         course3.enrollStudent(student1);
         course3.enrollStudent(student3);
         course3.enrollStudent(student5);

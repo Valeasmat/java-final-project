@@ -72,10 +72,14 @@ public class Main {
                         System.out.println("Select id student to start search:");
                         sc.nextLine();
                         String idStudent= getOptionFromCommunityMemberSubmenu(sc, university,2);
-                        String studentCoursesById = university.getStudentCoursesById(idStudent);
                         System.out.println("--------------------------------------------------");
                         System.out.println("Student "+idStudent+" result search: ");
-                        System.out.println(studentCoursesById);
+                        if(university.doesStudentIdExist(idStudent)){
+                            String studentCoursesById = university.getStudentCoursesById(idStudent);
+                            System.out.println(studentCoursesById);
+                        } else{
+                            System.out.println("Student "+idStudent+ " does not exist");
+                        }
                         if(getReturnToMenuOption(sc)==2)returnToMenu=false;
                         break;
                     case 6:
@@ -90,7 +94,7 @@ public class Main {
                 System.out.println("Error: "+e.getMessage());
             }catch(InputMismatchException e){
                 System.out.println("--------------------------------------------------");
-                System.out.println("Error: Invalid input,number needed");
+                System.out.println("Error: Invalid input,int needed");
 
                 sc.next();
             }
@@ -100,8 +104,8 @@ public class Main {
 
     }
 
-    private static void printCourseData(University newUniversity, int courseOption)  {
-        String courseData = newUniversity.getCourseData(courseOption);
+    private static void printCourseData(University university, int courseOption)  {
+        String courseData = university.getCourseData(courseOption);
         System.out.println("--------------------------------------------------");
         System.out.println(courseData);
         System.out.println("--------------------------------------------------");
@@ -131,6 +135,7 @@ public class Main {
         System.out.println("--------------------------------------------------");
         System.out.println(university.getCourseList());
         System.out.println("--------------------------------------------------");
+        System.out.println("*Courses Ids are integer numbers*");
         System.out.print("Insert the id of the course selected:");
         return sc.nextInt();
     }
@@ -176,8 +181,9 @@ public class Main {
             if(university.doesStudentIdExist(studentOption)){
                 studentsId[i]=studentOption;
             }else{
-                System.out.println("Id does not exist, insert another id");
-                i--;
+                System.out.println("Id does not exist");
+                //System.out.println("Id does not exist, insert another id");
+                //i--;
             }
         }
         return studentsId;
