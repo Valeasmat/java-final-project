@@ -4,7 +4,7 @@
 ## Description
 
 This program has 6 functionalities available
-1. Print all teachers and their data:
+####1. Print all teachers and their data:
 
 This option shows the data of the active teachers in the university
 
@@ -22,7 +22,7 @@ Result Example:
 ║ 2RA44 │ RAMIRO ALEGRE   │ 31  │ 14191,98 │ FullTime │ 3                   │ -               ║
 ╚═══════╧═════════════════╧═════╧══════════╧══════════╧═════════════════════╧═════════════════╝
 ```
-2. Print Course Data
+####2. Print Course Data
 
 This option shows the data of the course selected by inserting the id, if it's a non-existent id, it will show no data
 
@@ -64,7 +64,7 @@ STUDENTS ENROLLED:
 ║ 8IR35 │ IRINA CHAVEZ ║
 ╚═══════╧══════════════╝
 ```
-3. Create and assign student
+####3. Create and assign student
 
 This option enables the student creation given a valid name and age. If a courseId valid is inserted, the student will be enrolled, otherwise he will only be enrolled at the university, but in any course.
 
@@ -98,7 +98,7 @@ Student enrolled successfully
 ╚════════╧════════════╧═════╝
 ```
 
-4. Create course
+####4. Create course
 
 This option enables the course creation given a valid course name and classroom. If a teacherId valid is inserted and a list of studentsId are inserted, they will be assigned to the course in creation. Otherwise, the course will be created but it won't have teacher or students assigned.
 
@@ -191,7 +191,7 @@ STUDENTS ENROLLED:
 ║ 8IR35 │ IRINA CHAVEZ ║
 ╚═══════╧══════════════╝
 ```
-5. List courses in which a student is enrolled
+####5. List courses in which a student is enrolled
 
 This option shows a list of courses in which a given student is enrolled. If id is not valid, it will show a message explaining the result.
 
@@ -231,6 +231,6 @@ Student 8IR35 is enrolled in:
 ║ 4  │ PYTHON   ║
 ╚════╧══════════╝
 ```
-6. Quit
+####6. Quit
 
 Exits the application
