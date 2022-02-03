@@ -1,6 +1,6 @@
 # University project
 ## Project UML Structure
-
+![](UMLUniversityStructure.jpg)
 ## Description
 
 This program has 6 functionalities available
