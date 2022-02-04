@@ -21,7 +21,6 @@ public class Main {
         Scanner sc=new Scanner(System.in);
         System.out.println("Welcome to our university");
         University university =new University(new UniversityRepository());
-
         boolean keepLooping=true;
         boolean returnToMenu=true;
         while(keepLooping){
@@ -53,7 +52,7 @@ public class Main {
                         String courseClassroom= getClassroomDataInput(sc).toUpperCase();
                         String teacherOption= getOptionFromCommunityMemberSubmenu(sc, university,1);
                         if(!university.doesTeacherIdExist(teacherOption)){
-                            System.out.println("Teacher id not found, assign later");
+                            System.out.println("Teacher id not found, no teacher assignation");
                             teacherOption="";
                         }
                         String[] studentsId= getStudentsIdsInputData(sc, university);
@@ -186,7 +185,6 @@ public class Main {
                 studentsId[i]=studentOption;
             }else{
                 System.out.println("Id does not exist");
-                //i--;
             }
         }
         System.out.println("--------------------------------------------------");
