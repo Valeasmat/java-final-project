@@ -172,9 +172,9 @@ public class University {
      * @param courseClassroom The classroom of the course to be created
      * @param teacherId The id of the teacher to be assigned
      * @param studentsId The list of existing students ids to be enrolled
-     * @return A String containing the data of the course created in a table format
+     * @return The id of the course created
      */
-    public String createCourse(String courseName,String courseClassroom,String teacherId,String[] studentsId)  {
+    public int createCourse(String courseName,String courseClassroom,String teacherId,String[] studentsId)  {
         Course newCourse=new Course(courseName,courseClassroom);
         Teacher teacher=this.universityRepository.findTeacherById(teacherId);
         newCourse.assignTeacher(teacher);
@@ -184,6 +184,6 @@ public class University {
         }
         newCourse.enrollStudents(studentsToEnroll);
         this.universityRepository.addCourse(newCourse);
-        return newCourse.getCourseData();
+        return newCourse.getId();
     }
 }

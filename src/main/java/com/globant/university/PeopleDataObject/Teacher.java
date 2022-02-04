@@ -2,6 +2,7 @@ package com.globant.university.PeopleDataObject;
 
 public abstract class Teacher extends UniversityCommunityMember{
     private double baseSalary;
+
     public Teacher(){
         super();
         this.baseSalary=0.0;

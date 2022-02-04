@@ -6,6 +6,7 @@ package com.globant.university.PeopleDataObject;
  */
 public class FullTimeTeacher extends Teacher{
     private int yearsOfExperience;
+
     public FullTimeTeacher(String name, int age, double baseSalary,int yearsOfExperience) {
         super(name, age,baseSalary);
         this.yearsOfExperience=yearsOfExperience;

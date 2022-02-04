@@ -7,6 +7,7 @@ public class Student extends UniversityCommunityMember{
     public Student(){
         super();
     }
+
     public Student(String name, int age) {
         super(name, age);
     }
