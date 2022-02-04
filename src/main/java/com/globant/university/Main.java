@@ -73,7 +73,7 @@ public class Main {
                         keepLooping=false;
                         break;
                     default:
-                        throw new InvalidScannerInputException("Invalid option, try again");
+                        throw new InvalidScannerInputException("Invalid option,select between 1 and 6, try again");
                 }
             }catch(InvalidScannerInputException e){
                 System.out.println("--------------------------------------------------");
@@ -93,6 +93,7 @@ public class Main {
     private static void printResultCourseSearch(University university, String idStudent) {
         System.out.println("--------------------------------------------------");
         System.out.println("Student "+idStudent+" result search: ");
+        System.out.println("--------------------------------------------------");
         if(university.doesStudentIdExist(idStudent)){
             String studentCoursesById = university.getStudentCoursesById(idStudent);
             System.out.println(studentCoursesById);
@@ -105,7 +106,6 @@ public class Main {
         String courseData = university.getCourseData(courseOption);
         System.out.println("--------------------------------------------------");
         System.out.println(courseData);
-        System.out.println("--------------------------------------------------");
     }
 
     private static int getOptionFromPrincipalMenu(Scanner sc){
@@ -125,7 +125,6 @@ public class Main {
     private static void printTeachersInfo(University university){
         System.out.println("--------------------------------------------------");
         System.out.println(university.getTeachersList());
-        System.out.println("--------------------------------------------------");
     }
 
     private static int getOptionFromCoursesSubmenu(Scanner sc, University university){
@@ -144,7 +143,6 @@ public class Main {
         } else {
             System.out.println("Select student:");
         }
-        System.out.println("--------------------------------------------------");
         System.out.println(university.getCommunityMemberList(type));
         System.out.println("--------------------------------------------------");
         System.out.print("Insert the id selected: ");
@@ -178,7 +176,6 @@ public class Main {
         System.out.println("Proceed to insert the ids of the students to enroll:");
         System.out.println("--------------------------------------------------");
         System.out.println("How many students are going to be enrolled? :");
-        System.out.println("--------------------------------------------------");
         int numberOfStudents=sc.nextInt();
         sc.nextLine();
         String[] studentsId=new String[numberOfStudents];
@@ -189,14 +186,15 @@ public class Main {
                 studentsId[i]=studentOption;
             }else{
                 System.out.println("Id does not exist");
-                //System.out.println("Id does not exist, insert another id");
                 //i--;
             }
         }
+        System.out.println("--------------------------------------------------");
         return studentsId;
     }
 
     private static int getReturnToMenuOption(Scanner sc){
+        System.out.println("--------------------------------------------------");
         System.out.println("Return to menu?: (1)YES (2)NO");
         System.out.print("Insert option:");
         int result= sc.nextInt();
