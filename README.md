@@ -1,7 +1,8 @@
 # University project
+Project in Java 8 with maven
 ## Project UML Structure
 ![](UMLUniversityStructure.jpg)
-## Description
+## Brief Description
 
 This program has 6 functionalities available
 
